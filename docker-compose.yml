@@ -1,0 +1,21 @@
+name: AdminPanel 
+services:
+  adminpanel.web:
+    image: adminpanel.web
+    container_name: AdminPanel.API
+    build:
+      context: ./backend
+      dockerfile: AdminPanel.Web/Dockerfile  
+    ports:
+      - "5000:5000"
+    environment:
+      - ASPNETCORE_URLS=http://+:5000
+  postgres:
+    image: postgres:latest
+    container_name: AdminPanel.Db
+    environment:
+      POSTGRES_DB: "AdminPanel"
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: "postgres"
+    ports:
+      - "5001:5001"
