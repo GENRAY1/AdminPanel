@@ -1,4 +1,4 @@
-namespace AdminPanel.Application.Abstractions;
+namespace AdminPanel.Application.Abstractions.Common;
 
 public interface IQueryHandler <in TQuery, TResponse>
     where TQuery : IQuery<TResponse>

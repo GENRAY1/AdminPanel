@@ -1,6 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AdminPanel.Domain.Common;
+using Microsoft.AspNetCore.Mvc;
 
-namespace AdminPanel.Web.Middaleware;
+namespace AdminPanel.Web.Middlewares;
 
 internal sealed class ExceptionHandlingMiddleware
 {
@@ -37,9 +38,15 @@ internal sealed class ExceptionHandlingMiddleware
 	{
 		return exception switch
 		{
+			ApiException apiException => new ProblemDetails
+			{
+				Status = (int)apiException.StatusCode,
+				Type = "ApiError",
+				Detail = apiException.Message
+			},
 			_ => new ProblemDetails{
 				Status = StatusCodes.Status500InternalServerError,
-				Type = "Server error",
+				Type = "ServerError",
 				Detail = exception.Message
 			}
 		};

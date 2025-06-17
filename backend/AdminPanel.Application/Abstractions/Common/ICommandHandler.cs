@@ -1,7 +1,7 @@
-namespace AdminPanel.Application.Abstractions;
+namespace AdminPanel.Application.Abstractions.Common;
 
 public interface ICommandHandler<in TCommand, TResponse>
-    where TCommand : ICommand
+    where TCommand : ICommand<TResponse>
 {
     Task<TResponse> Handle(TCommand request, CancellationToken cancellationToken);
 }

@@ -11,4 +11,8 @@
       <PackageReference Include="Scrutor" Version="6.1.0" />
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\AdminPanel.Domain\AdminPanel.Domain.csproj" />
+    </ItemGroup>
+
 </Project>

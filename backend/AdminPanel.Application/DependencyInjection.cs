@@ -1,5 +1,6 @@
 ﻿using System.Reflection;
 using AdminPanel.Application.Abstractions;
+using AdminPanel.Application.Abstractions.Common;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace AdminPanel.Application;
