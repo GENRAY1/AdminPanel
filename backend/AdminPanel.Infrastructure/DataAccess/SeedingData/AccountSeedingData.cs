@@ -4,7 +4,7 @@ namespace AdminPanel.Infrastructure.DataAccess.SeedingData;
 
 public class AccountSeedingData
 {
-    public static Account[] Accounts =
+    public static readonly Account[] Data =
     [
         new Account{
             Id = new Guid("8B4B4145-6122-4D99-9D7B-E669112618FE"), 

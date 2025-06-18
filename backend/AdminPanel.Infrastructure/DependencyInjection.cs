@@ -1,6 +1,7 @@
 ﻿using System.Text;
 using AdminPanel.Application.Abstractions.Authentication;
 using AdminPanel.Domain.Accounts;
+using AdminPanel.Domain.Clients;
 using AdminPanel.Domain.RefreshTokens;
 using AdminPanel.Infrastructure.Authentication;
 using AdminPanel.Infrastructure.DataAccess;
@@ -20,7 +21,6 @@ public static class DependencyInjection
         AddStorageServices(services, configuration);
         AddAuthenticationServices(services, configuration);
         services.AddAuthorization();
-        
     }
     
     public static void ApplyPendingMigrations(this IServiceProvider serviceProvider)
@@ -40,6 +40,7 @@ public static class DependencyInjection
         services.AddDbContext<ApplicationDbContext>(options => options.UseNpgsql(connectionString));
         services.AddScoped<IAccountRepository, AccountRepository>();
         services.AddScoped<IRefreshTokenRepository, RefreshTokenRepository>();
+        services.AddScoped<IClientRepository, ClientRepository>();
     }
     
     private static void AddAuthenticationServices(IServiceCollection services, IConfiguration configuration)

@@ -22,6 +22,6 @@ public class AccountConfiguration : IEntityTypeConfiguration<Account>
         builder.Property(x => x.CreatedAt)
             .IsRequired();
 
-        builder.HasData(AccountSeedingData.Accounts);
+        builder.HasData(AccountSeedingData.Data);
     }
 }
