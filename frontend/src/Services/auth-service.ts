@@ -42,6 +42,7 @@ class AuthService {
             authDataService.setAccessToken(response.data.accessToken);
         } catch (error) {
             authDataService.removeAuthData()
+            window.location.href = '/login';
             throw error;
         }
     }
