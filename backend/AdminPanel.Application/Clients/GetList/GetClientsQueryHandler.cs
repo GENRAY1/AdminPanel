@@ -9,7 +9,7 @@ public class GetClientsQueryHandler (IClientRepository clientRepository)
     public async Task<List<ClientDto>> Handle(GetClientsQuery request, CancellationToken cancellationToken)
     {
         List<Client> clients = 
-            await clientRepository.GetAllAsync(cancellationToken);
+            await clientRepository.GetListAsync(cancellationToken);
         
         return clients
             .Select(c => new ClientDto

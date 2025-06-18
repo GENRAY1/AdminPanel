@@ -2,6 +2,8 @@
 using AdminPanel.Application.Abstractions.Authentication;
 using AdminPanel.Domain.Accounts;
 using AdminPanel.Domain.Clients;
+using AdminPanel.Domain.Payments;
+using AdminPanel.Domain.Rates;
 using AdminPanel.Domain.RefreshTokens;
 using AdminPanel.Infrastructure.Authentication;
 using AdminPanel.Infrastructure.DataAccess;
@@ -41,6 +43,8 @@ public static class DependencyInjection
         services.AddScoped<IAccountRepository, AccountRepository>();
         services.AddScoped<IRefreshTokenRepository, RefreshTokenRepository>();
         services.AddScoped<IClientRepository, ClientRepository>();
+        services.AddScoped<IRateRepository, RateRepository>();
+        services.AddScoped<IPaymentRepository, PaymentRepository>();
     }
     
     private static void AddAuthenticationServices(IServiceCollection services, IConfiguration configuration)

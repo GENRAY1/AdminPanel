@@ -5,7 +5,7 @@ namespace AdminPanel.Infrastructure.DataAccess.Repositories;
 
 internal class ClientRepository(ApplicationDbContext context): IClientRepository
 {
-    public Task<List<Client>> GetAllAsync(CancellationToken cancellationToken)
+    public Task<List<Client>> GetListAsync(CancellationToken cancellationToken)
     {
         return context.Set<Client>()
             .Include(x => x.Tags)
@@ -28,6 +28,6 @@ internal class ClientRepository(ApplicationDbContext context): IClientRepository
     public void Delete(Client client) 
         => context.Set<Client>().Remove(client);
     
-    public Task SaveAsync(CancellationToken cancellationToken)
-        => context.SaveChangesAsync(cancellationToken);
+    public async Task SaveAsync(CancellationToken cancellationToken)
+        => await context.SaveChangesAsync(cancellationToken);
 }

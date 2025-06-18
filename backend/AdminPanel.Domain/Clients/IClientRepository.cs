@@ -2,7 +2,7 @@ namespace AdminPanel.Domain.Clients;
 
 public interface IClientRepository
 {
-    Task<List<Client>> GetAllAsync(CancellationToken cancellationToken);
+    Task<List<Client>> GetListAsync(CancellationToken cancellationToken);
     
     Task<Client?> GetAsync(Guid id, CancellationToken cancellationToken);
     

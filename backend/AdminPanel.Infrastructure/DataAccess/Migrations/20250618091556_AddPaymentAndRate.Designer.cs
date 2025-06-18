@@ -3,6 +3,7 @@ using System;
 using AdminPanel.Infrastructure.DataAccess;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace AdminPanel.Infrastructure.DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250618091556_AddPaymentAndRate")]
+    partial class AddPaymentAndRate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -210,48 +213,6 @@ namespace AdminPanel.Infrastructure.DataAccess.Migrations
                     b.HasIndex("RateId");
 
                     b.ToTable("Payment");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("e71ca437-b0c9-4d84-9817-69a3fedebc17"),
-                            Amount = 1500.50m,
-                            ClientId = new Guid("e3c4ea0e-3c29-4ffe-82a8-8e72857035f3"),
-                            CreatedAt = new DateTime(2025, 6, 10, 0, 0, 0, 0, DateTimeKind.Utc),
-                            RateId = new Guid("af9ee87c-c49c-4935-95af-fdbf850bc455")
-                        },
-                        new
-                        {
-                            Id = new Guid("bb606c86-300b-4bce-8d6a-d1dffb29a588"),
-                            Amount = 2500m,
-                            ClientId = new Guid("f33b8c2e-9335-419a-a1ca-85d6eb5f5c89"),
-                            CreatedAt = new DateTime(2025, 5, 15, 0, 0, 0, 0, DateTimeKind.Utc),
-                            RateId = new Guid("aecae947-96fa-4891-8fc1-6cdef3c8b8bf")
-                        },
-                        new
-                        {
-                            Id = new Guid("1f3b7d57-7c14-435b-998e-fa500424163a"),
-                            Amount = 18000m,
-                            ClientId = new Guid("751150d4-8e8e-466f-ac7d-bea47981281e"),
-                            CreatedAt = new DateTime(2025, 4, 5, 0, 0, 0, 0, DateTimeKind.Utc),
-                            RateId = new Guid("1224c302-d8ce-4bf6-bf0f-c8fdce929f67")
-                        },
-                        new
-                        {
-                            Id = new Guid("74dfabac-f7bc-4439-a501-dc148a65e94d"),
-                            Amount = 5000m,
-                            ClientId = new Guid("e3c4ea0e-3c29-4ffe-82a8-8e72857035f3"),
-                            CreatedAt = new DateTime(2025, 3, 20, 0, 0, 0, 0, DateTimeKind.Utc),
-                            RateId = new Guid("376a4fb5-9a56-458f-b6dc-82f9879abf1e")
-                        },
-                        new
-                        {
-                            Id = new Guid("dfe99409-bf0f-444c-bf5d-ba7f7e82cfe1"),
-                            Amount = 100000m,
-                            ClientId = new Guid("f33b8c2e-9335-419a-a1ca-85d6eb5f5c89"),
-                            CreatedAt = new DateTime(2025, 2, 28, 0, 0, 0, 0, DateTimeKind.Utc),
-                            RateId = new Guid("c96fd987-8f25-4cd3-af6e-45e9fa7f4c0c")
-                        });
                 });
 
             modelBuilder.Entity("AdminPanel.Domain.Rates.Rate", b =>
