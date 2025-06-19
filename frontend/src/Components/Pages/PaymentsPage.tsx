@@ -1,7 +1,10 @@
+import PaymentTable from "../Payments/PaymentTable.tsx";
+
 const PaymentsPage = () => {
     return (
         <div>
-            <h1>Payments page</h1>
+            <h1>Payments history</h1>
+            <PaymentTable/>
         </div>
     );
 };

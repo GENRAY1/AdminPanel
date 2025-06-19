@@ -1,4 +1,5 @@
 import type {Client} from "../Domain/Clients/Client.tsx";
+import type {Payment} from "../Domain/Payments/Payment.ts";
 
 export interface LoginResponse {
     accountId: string;
@@ -47,4 +48,11 @@ export interface UpdateClientRequest {
     email: string;
     balance: number;
     tags: number[];
+}
+
+export interface GetPaymentsRequest{
+    take:number
+}
+export interface GetPaymentsResponse {
+    payments: Payment[];
 }

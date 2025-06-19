@@ -27,7 +27,7 @@ const LoginPage = () => {
         <Container>
             <Row className="justify-content-md-center mt-5">
                 <Col md={4}>
-                    <h2 className="text-center mb-4">Login to CRM</h2>
+                    <h2 className="text-center mb-4">Login to Admin Panel</h2>
                     {errorMessage && <Alert className="mt-3" variant="danger">{errorMessage}</Alert>}
                     <Form onSubmit={handleSubmit} >
                         <Form.Group controlId="formBasicEmail">
