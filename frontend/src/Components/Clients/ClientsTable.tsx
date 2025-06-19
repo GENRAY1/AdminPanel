@@ -46,6 +46,7 @@ const ClientsTable = () => {
     const handleDelete = async (clientId: string) => {
         try {
             await clientService.deleteClient(clientId);
+            setClients(prev => prev.filter(c => c.id !== clientId))
         } catch (err) {
             const message = getErrorMessageOrDefault(err)
             setError(message);
