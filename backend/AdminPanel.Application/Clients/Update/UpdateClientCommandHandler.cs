@@ -1,13 +1,15 @@
 using AdminPanel.Application.Abstractions.Common;
+using AdminPanel.Application.Dtos;
+using AdminPanel.Application.Extensions;
 using AdminPanel.Domain.Clients;
 using AdminPanel.Domain.Clients.Exceptions;
 
 namespace AdminPanel.Application.Clients.Update;
 
 public class UpdateClientCommandHandler (IClientRepository clientRepository)
-    : ICommandHandler<UpdateClientCommand>
+    : ICommandHandler<UpdateClientCommand, ClientDto>
 {
-    public async Task Handle(UpdateClientCommand request, CancellationToken cancellationToken)
+    public async Task<ClientDto> Handle(UpdateClientCommand request, CancellationToken cancellationToken)
     {
         Client? client = 
             await clientRepository.GetAsync(request.Id, cancellationToken);
@@ -28,5 +30,7 @@ public class UpdateClientCommandHandler (IClientRepository clientRepository)
         client.Tags = clientTags;
         
         await clientRepository.SaveAsync(cancellationToken);
+        
+        return client.ToDto();
     }
 }

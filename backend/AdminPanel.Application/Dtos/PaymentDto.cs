@@ -1,4 +1,4 @@
-namespace AdminPanel.Application.Payments.GetList;
+namespace AdminPanel.Application.Dtos;
 
 public class PaymentDto
 {

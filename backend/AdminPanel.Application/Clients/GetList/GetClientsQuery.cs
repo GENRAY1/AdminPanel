@@ -1,4 +1,5 @@
 using AdminPanel.Application.Abstractions.Common;
+using AdminPanel.Application.Dtos;
 
 namespace AdminPanel.Application.Clients.GetList;
 

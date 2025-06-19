@@ -4,4 +4,4 @@ using AdminPanel.Domain.Common;
 namespace AdminPanel.Domain.RefreshTokens.Exceptions;
 
 public class InvalidRefreshTokenException()
-    : ApiException("Invalid refresh token", HttpStatusCode.BadRequest);
+    : ApiException("Invalid refresh token", HttpStatusCode.Unauthorized);

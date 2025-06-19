@@ -1,6 +1,6 @@
 using AdminPanel.Domain.Clients;
 
-namespace AdminPanel.Application.Clients.GetList;
+namespace AdminPanel.Application.Dtos;
 
 public class ClientDto
 {

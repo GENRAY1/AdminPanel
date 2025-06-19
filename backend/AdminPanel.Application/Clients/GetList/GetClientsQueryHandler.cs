@@ -1,4 +1,6 @@
 using AdminPanel.Application.Abstractions.Common;
+using AdminPanel.Application.Dtos;
+using AdminPanel.Application.Extensions;
 using AdminPanel.Domain.Clients;
 
 namespace AdminPanel.Application.Clients.GetList;
@@ -12,15 +14,7 @@ public class GetClientsQueryHandler (IClientRepository clientRepository)
             await clientRepository.GetListAsync(cancellationToken);
         
         return clients
-            .Select(c => new ClientDto
-            {
-                Id = c.Id,
-                Name = c.Name,
-                Email = c.Email,
-                Balance = c.Balance,
-                CreatedAt = c.CreatedAt,
-                UpdatedAt = c.UpdatedAt,
-                Tags = c.Tags.Select(t => t.Tag)
-            }).ToList();
+            .Select(c => c.ToDto())
+            .ToList();
     }
 }

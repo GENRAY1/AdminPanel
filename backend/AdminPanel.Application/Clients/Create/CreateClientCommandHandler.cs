@@ -1,12 +1,14 @@
 using AdminPanel.Application.Abstractions.Common;
+using AdminPanel.Application.Dtos;
+using AdminPanel.Application.Extensions;
 using AdminPanel.Domain.Clients;
 
 namespace AdminPanel.Application.Clients.Create;
 
 public class CreateClientCommandHandler(IClientRepository clientRepository)
-    : ICommandHandler<CreateClientCommand>
+    : ICommandHandler<CreateClientCommand, ClientDto>
 {
-    public async Task Handle(CreateClientCommand request, CancellationToken cancellationToken)
+    public async Task<ClientDto> Handle(CreateClientCommand request, CancellationToken cancellationToken)
     {
         Guid id = Guid.NewGuid();
         
@@ -26,5 +28,8 @@ public class CreateClientCommandHandler(IClientRepository clientRepository)
         
         await clientRepository.AddAsync(client, cancellationToken);
         await clientRepository.SaveAsync(cancellationToken);
+        
+        
+        return client.ToDto(); 
     }
 }

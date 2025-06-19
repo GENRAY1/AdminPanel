@@ -1,3 +1,4 @@
+using System.Net;
 using AdminPanel.Application.Abstractions.Common;
 using AdminPanel.Application.Authentication.Login;
 using AdminPanel.Application.Authentication.Logout;
@@ -6,6 +7,8 @@ using AdminPanel.Application.Clients.Create;
 using AdminPanel.Application.Clients.Delete;
 using AdminPanel.Application.Clients.GetList;
 using AdminPanel.Application.Clients.Update;
+using AdminPanel.Application.Dtos;
+using AdminPanel.Domain.Clients;
 using AdminPanel.Web.Abstractions;
 using Microsoft.AspNetCore.Mvc;
 
@@ -19,10 +22,10 @@ public class ClientsModule : IModule
 
         clientResource.MapPost("/", async (
             [FromBody] CreateClientRequest request,
-            ICommandHandler<CreateClientCommand> command,
+            ICommandHandler<CreateClientCommand, ClientDto> command,
             CancellationToken cancellationToken) =>
         {
-            await command.Handle(new CreateClientCommand
+            ClientDto client = await command.Handle(new CreateClientCommand
                 {
                     Name = request.Name,
                     Email = request.Email,
@@ -30,7 +33,7 @@ public class ClientsModule : IModule
                     Tags = request.Tags
                 }, cancellationToken);
 
-            return Results.Created();
+            return Results.Created(new Uri($"/{client.Id}", UriKind.Relative), client);
         }).RequireAuthorization();
         
         clientResource.MapGet("/", async (
@@ -49,10 +52,10 @@ public class ClientsModule : IModule
         clientResource.MapPut("/{id}", async (
             [FromRoute] Guid id,
             [FromBody] UpdateClientRequest request,
-            ICommandHandler<UpdateClientCommand> command,
+            ICommandHandler<UpdateClientCommand, ClientDto> command,
             CancellationToken cancellationToken) =>
         {
-            await command.Handle(new UpdateClientCommand
+            ClientDto client = await command.Handle(new UpdateClientCommand
             {
                 Id = id,
                 Name = request.Name,
@@ -61,7 +64,7 @@ public class ClientsModule : IModule
                 Tags = request.Tags
             }, cancellationToken);
             
-            return Results.Ok();
+            return Results.Ok(client);
         }).RequireAuthorization();
         
         clientResource.MapDelete("/{id}", async (

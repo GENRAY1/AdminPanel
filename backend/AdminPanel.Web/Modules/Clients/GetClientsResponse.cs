@@ -1,4 +1,5 @@
 using AdminPanel.Application.Clients.GetList;
+using AdminPanel.Application.Dtos;
 
 namespace AdminPanel.Web.Modules.Clients;
 

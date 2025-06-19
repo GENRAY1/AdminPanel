@@ -1,4 +1,4 @@
-namespace AdminPanel.Application.Rates.GetCurrent;
+namespace AdminPanel.Application.Dtos;
 
 public class RateDto
 {

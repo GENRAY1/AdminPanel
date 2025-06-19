@@ -1,4 +1,5 @@
 using AdminPanel.Application.Abstractions.Common;
+using AdminPanel.Application.Dtos;
 using AdminPanel.Domain.Rates;
 
 namespace AdminPanel.Application.Rates.GetCurrent;

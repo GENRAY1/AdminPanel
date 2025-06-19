@@ -1,5 +1,6 @@
 using AdminPanel.Application.Abstractions.Common;
 using AdminPanel.Application.Clients.Create;
+using AdminPanel.Application.Dtos;
 using AdminPanel.Application.Rates.Create;
 using AdminPanel.Application.Rates.GetCurrent;
 using AdminPanel.Web.Abstractions;
