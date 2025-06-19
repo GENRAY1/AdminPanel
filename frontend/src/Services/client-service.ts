@@ -1,5 +1,6 @@
 import adminPanelApi from "../Api/admin-panel-api.ts";
 import type {CreateClientRequest, GetClientsResponse, UpdateClientRequest} from "../Api/admin-panel-contracts.ts";
+import type {Client} from "../Domain/Clients/Client.tsx";
 
 class ClientService{
     readonly path:string = "/clients";
@@ -9,12 +10,17 @@ class ClientService{
 
         return response.data;
     }
-    async createClient(request: CreateClientRequest): Promise<void> {
-        await adminPanelApi.post(this.path, request);
+    async createClient(request: CreateClientRequest): Promise<Client> {
+        const response = await adminPanelApi.post<Client>(this.path, request);
+
+        return response.data;
     }
 
-    async updateClient(request: UpdateClientRequest): Promise<void> {
-        await adminPanelApi.put(`${this.path}/${request.id}`, request);
+    async updateClient(request: UpdateClientRequest): Promise<Client> {
+        const response
+            = await adminPanelApi.put<Client>(`${this.path}/${request.id}`, request);
+
+        return response.data;
     }
 
     async deleteClient(id: string): Promise<void> {

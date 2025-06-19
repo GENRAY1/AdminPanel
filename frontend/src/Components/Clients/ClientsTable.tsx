@@ -55,16 +55,14 @@ const ClientsTable = () => {
     const handleSubmit = async (clientData: ClientFormData) => {
         try {
             if (currentClient) {
-                // Редактирование существующего клиента
-                await clientService.updateClient( {
+                const client = await clientService.updateClient( {
                     id: currentClient.id,
                     ...clientData
                 });
-               //TODO setClients(prev => prev.map(c => c.id === currentClient.id ? updatedClient : c));
+                setClients(prev => prev.map(c => c.id === currentClient.id ? client : c));
             } else {
-                // Создание нового клиента
-                await clientService.createClient({...clientData});
-                //TODO setClients(prev => [...prev, newClient]);
+                const client = await clientService.createClient({...clientData});
+                setClients(prev => [...prev, client]);
             }
             setError(null);
         } catch (err) {
