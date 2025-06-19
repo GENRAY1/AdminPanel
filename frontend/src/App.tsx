@@ -4,17 +4,18 @@ import ProtectedRoute from "./Components/Auth/ProtectedRoute.tsx";
 import DashboardPage from "./Components/Pages/DashboardPage.tsx";
 import PaymentsPage from "./Components/Pages/PaymentsPage.tsx";
 import Layout from "./Components/Layout/Layout.tsx";
+import {ROUTS_PATHS} from "./Components/Auth/routes.ts";
 
 
 function App() {
     return (
         <Routes>
-            <Route path="/login" element={<LoginPage/>} />
+            <Route path={ROUTS_PATHS.login} element={<LoginPage/>} />
             <Route element={<ProtectedRoute />}>
                 <Route element={<Layout />}>
-                    <Route path="/" element={<DashboardPage />} />
-                    <Route path="/dashboard" element={<DashboardPage />} />
-                    <Route path="/payments" element={<PaymentsPage />} />
+                    <Route path={ROUTS_PATHS.home} element={<DashboardPage />} />
+                    <Route path={ROUTS_PATHS.dashboard} element={<DashboardPage />} />
+                    <Route path={ROUTS_PATHS.payments} element={<PaymentsPage />} />
                 </Route>
             </Route>
         </Routes>

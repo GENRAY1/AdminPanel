@@ -1,7 +1,11 @@
+import CurrentRate from "../Rates/CurrentRate.tsx";
+import ClientsTable from "../Clients/ClientsTable.tsx";
+
 const DashboardPage = () => {
     return (
         <div>
-            <h1>Dashboard page</h1>
+            <CurrentRate/>
+            <ClientsTable/>
         </div>
     );
 };

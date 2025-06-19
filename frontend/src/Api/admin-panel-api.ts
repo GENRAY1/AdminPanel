@@ -4,11 +4,11 @@ import {authService} from "../Services/auth-service.ts";
 import {authDataService} from "../Services/auth-data-service.ts";
 
 
-const api = axios.create({
+const adminPanelApi = axios.create({
     baseURL: ADMIN_PANEL_API_URL,
 });
 
-api.interceptors.request.use(
+adminPanelApi.interceptors.request.use(
     async (config) => {
         const accessToken = authDataService.getAccessToken();
 
@@ -23,7 +23,7 @@ api.interceptors.request.use(
     }
 );
 
-api.interceptors.response.use(
+adminPanelApi.interceptors.response.use(
     (response) => response,
     async (error) => {
         const originalRequest = error.config;
@@ -38,7 +38,7 @@ api.interceptors.response.use(
 
                 if (newAccessToken) {
                     originalRequest.headers.Authorization = `Bearer ${newAccessToken}`;
-                    return api(originalRequest);
+                    return adminPanelApi(originalRequest);
                 }
             } catch (refreshError) {
                 return Promise.reject(refreshError);
@@ -49,4 +49,4 @@ api.interceptors.response.use(
     }
 );
 
-export default api;
+export default adminPanelApi;

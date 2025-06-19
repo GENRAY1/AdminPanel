@@ -3,6 +3,7 @@ import {Form,Row,Col, Button, Container, Alert} from 'react-bootstrap';
 import {authService} from "../../Services/auth-service.ts";
 import {getErrorMessageOrDefault} from "../../Api/api-error.ts";
 import {useNavigate} from "react-router-dom";
+import {ROUTS_PATHS} from "../Auth/routes.ts";
 
 const LoginPage = () => {
     const [email, setEmail] = useState<string>('');
@@ -14,8 +15,8 @@ const LoginPage = () => {
         e.preventDefault();
 
         try {
-            await authService.login(email, password);
-            navigate("/")
+            await authService.login({email, password});
+            navigate(ROUTS_PATHS.dashboard);
         }catch(e) {
             const message = getErrorMessageOrDefault(e)
             setErrorMessage(message)
